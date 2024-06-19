@@ -27,15 +27,24 @@ const questions = [{
     choices: ["Black", "Blue", "Green", "Red", "White"], 
 }]
 
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, function(err){
+        if (err) throw err;
+        console.log("Generated logo!");
+    });
+}
+
+
+
+
 function init() {
-    let logo = document.createElementNS("svg")
     console.log("Welcome to SVG Logo Generator!")
     inquirer
         .prompt(questions)
         .then((response) =>
-        console.log(response))
-        // generateLogo(response)
-        // writeFile("logo", response)
+        JSON.stringify(response))
+        .then((response) =>
+        writeToFile("logo.svg", response))
     }
 
 init();

@@ -1,7 +1,7 @@
 // Use here to actually run code, others for exports.
 const inquirer = require('inquirer');
 const fs = require('fs');
-// const shapes = require('./lib/shapes')
+const Shapes = require('./lib/shapes.js');
 // TODO: Export the classes to make shapes.
 
 const questions = [{
@@ -43,6 +43,12 @@ function init() {
         .prompt(questions)
         .then((response) =>
         JSON.stringify(response))
+        .then((response) => 
+        svg.setAttribute("width", "300px"),
+        svg.setAttribute("height", "200px"),
+        svg.setAttribute("color", data.logoColor)
+    
+    )
         .then((response) =>
         writeToFile("logo.svg", response))
     }
